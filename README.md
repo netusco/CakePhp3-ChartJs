@@ -12,6 +12,13 @@ This software is registered under the MIT license. Copyright(c) 2015 - Ernest Co
 
 ## Installation
 
+* Clone this plugin from [Github](https://github.com/netusco/CakePhp-ChartJs.git)
+You will need a ChartJs directory in your plugins folder so from your app root directory you can use:
+
+```sh
+git clone https://github.com/netusco/CakePhp-ChartJs.git plugins/ChartJs/
+```
+
 * This plugin uses Chart.js javascript plugin cloned into webroot/js/ChartJs you can pull the sources for updates
 
 * Load the plugin
