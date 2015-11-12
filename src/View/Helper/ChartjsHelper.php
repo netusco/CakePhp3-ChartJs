@@ -393,7 +393,7 @@ class ChartjsHelper extends Helper
     }
 
     public function beforeRender($viewFile) {
-        echo $this->Html->script("ChartJs.Chartjs/Chart", ['block' => true, 'once' => true]);
+        echo $this->Html->script("ChartJs.ChartJs/Chart", ['block' => true, 'once' => true]);
     }
 
     public function createChart($data = [], $options = []) { 
@@ -444,12 +444,13 @@ class ChartjsHelper extends Helper
                 break;
         }
 
-        // Initialize chart object
-        $chartScript .= 'var '. $data['Chart']['id'] .' = new Chart(ctx).'. $chartType .'(data, options);';
+        
 
-        // Chart Options 
+        // Prepare Chart Options 
         $options = $this->setOptions($options, $data);
         $chartScript .= 'var options = '. $options .';';
+        // Initialize chart object
+        $chartScript .= 'var '. $data['Chart']['id'] .' = new Chart(ctx).'. $chartType .'(data, options);';
 
         // Canvas Settings
         $canvasId = (isset($data["Chart"]["id"])) ? $data["Chart"]["id"] : $this->config("Chart.id");
@@ -514,7 +515,7 @@ class ChartjsHelper extends Helper
         }
 
         // SPECIFIC OPTIONS
-        $chartType = (strtolower($data['Chart']['type'] === 'doughnut')) ? 'Pie' : uc_first(strtolower($data['Chart']['type']));
+        $chartType = (strtolower($data['Chart']['type'] === 'doughnut')) ? 'Pie' : ucfirst(strtolower($data['Chart']['type']));
     
         foreach($this->config('Options.'.$chartType) as $label => $val) {
             // chart type given without capital letters
